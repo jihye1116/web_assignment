@@ -1,27 +1,36 @@
 import { useState } from "react";
-import { fireStore } from "../firebase";
+import { useNavigate } from "react-router-dom";
+import firebase from "firebase/compat/app";
+import { signInWithPopup } from "firebase/compat/auth";
+import { GoogleAuthProvider } from "firebase/auth";
+import { firebaseConfig } from "../firebase"; // Replace with your Firebase configuration
+
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
 
 const Login = () => {
+  const navigate = useNavigate();
   const [user, setUser] = useState(null);
 
-  // Google 로그인 처리 함수
   const handleGoogleLogin = () => {
-    const provider = new fireStore.auth.GoogleAuthProvider();
-    fireStore
+    const provider = new GoogleAuthProvider();
+    firebase
       .auth()
       .signInWithPopup(provider)
       .then((result) => {
         const user = result.user;
         setUser(user);
+        alert("로그인에 성공했습니다.");
+        navigate("/");
       })
       .catch((error) => {
         console.log("Google 로그인 실패:", error.message);
       });
   };
 
-  // 로그아웃 처리 함수
   const handleLogout = () => {
-    fireStore
+    firebase
       .auth()
       .signOut()
       .then(() => {
