@@ -1,8 +1,9 @@
 import { useEffect } from "react";
-import { fireStore } from "./firebase";
+import { fireStore, app } from "./firebase";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Login from "./pages/Login";
+
 import Main from "./pages/Main";
+import Post from "./pages/Post";
 
 function App() {
   useEffect(() => {
@@ -13,7 +14,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Main />}></Route>
-        <Route path="/login/*" element={<Login />}></Route>
+        <Route path="/post/:id" component={<Post />}></Route>
         {/* <Route path="*" element={<NotFound />}></Route> */}
       </Routes>
     </BrowserRouter>
