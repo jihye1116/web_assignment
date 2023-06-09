@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Main from "./pages/Main";
 import Post from "./pages/Post";
+import Test from "./pages/Test";
 
 function App() {
   useEffect(() => {
@@ -14,6 +15,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Main />}></Route>
+        <Route path="/test" element={<Test />}></Route>
         <Route path="/post/:id" component={<Post />}></Route>
         {/* <Route path="*" element={<NotFound />}></Route> */}
       </Routes>
