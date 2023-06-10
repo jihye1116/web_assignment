@@ -6,6 +6,7 @@ import { collection, doc, setDoc } from "firebase/firestore";
 function PostForm() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [rating, setRating] = useState(0);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,12 +22,14 @@ function PostForm() {
         title,
         content,
         author: currentUser.displayName,
+        rating,
       };
 
       await setDoc(postRef, postData);
 
       setTitle("");
       setContent("");
+      setRating(0);
     } catch (error) {
       console.error("글 등록 중 오류가 발생했습니다.", error);
     }
