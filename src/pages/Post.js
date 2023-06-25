@@ -12,7 +12,7 @@ import {
 } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 
-function PostDetail({ match }) {
+function PostDetail() {
   const { id } = useParams();
   const [post, setPost] = useState(null);
   const [comments, setComments] = useState([]);
