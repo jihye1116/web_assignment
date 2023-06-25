@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import "./App.css";
 import * as S from "./style";
+import GlobalStyle from "./style";
 
 import Main from "./pages/Main/Main";
 import Post from "./pages/Post";
@@ -41,6 +42,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      <GlobalStyle />
       <S.Header>
         <div>
           {/* <img src="" alt="로고" /> */}

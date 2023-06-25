@@ -1,4 +1,5 @@
 import { styled } from "styled-components";
+import { createGlobalStyle } from "styled-components";
 
 export const Header = styled.header`
   position: sticky;
@@ -35,3 +36,16 @@ export const User = styled.div`
   background-color: inherit;
   font-family: "GmarketSansTTFMedium";
 `;
+
+const GlobalStyle = createGlobalStyle`
+  *, *::before, *::after {
+   background-color: red;
+  }
+
+  body {
+    font-family: "Helvetica", "Arial", sans-serif;
+    line-height: 1.5;
+  }
+`;
+
+export default GlobalStyle;
