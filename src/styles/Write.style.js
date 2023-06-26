@@ -1,27 +1,23 @@
 import { styled } from "styled-components";
 
-export const FakeHeader = styled.div`
-  position: sticky;
-  top: 0;
-  background-color: white;
-  height: 100px;
-`;
-
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 400px;
-  margin: 0 auto;
+
+  margin: 0 20%;
 `;
 
-export const Input = styled.input`
+export const Title = styled.input`
   padding: 10px;
-  margin-bottom: 10px;
+  font-size: 30px;
+  border: none;
 `;
 
 export const TextArea = styled.textarea`
   padding: 10px;
   margin-bottom: 10px;
+
+  border: none;
 `;
 
 export const Button = styled.button`
