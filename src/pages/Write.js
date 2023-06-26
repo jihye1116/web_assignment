@@ -47,7 +47,7 @@ const ButtonContainer = styled.div`
 
 const SubmitButton = styled.button`
   padding: 10px;
-  background-color: #007bff;
+  background-color: #0b53e4;
   color: #fff;
 
   border: none;
