@@ -12,7 +12,9 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
+
 import styled from "styled-components";
+import * as S from "../styles/Post.style";
 import { FaStar, FaStarHalfAlt } from "react-icons/fa";
 
 const PostDetail = () => {
@@ -111,28 +113,26 @@ const PostDetail = () => {
   }
 
   return (
-    <div>
-      <h2>{post.title}</h2>
-      <p>작성자: {post.author}</p>
+    <S.Container>
+      <S.Title>{post.title}</S.Title>
+      <S.Author>{post.author}</S.Author>
 
-      <div dangerouslySetInnerHTML={{ __html: post.content }}></div>
+      <S.Content dangerouslySetInnerHTML={{ __html: post.content }}></S.Content>
 
-      {/*  내용 */}
-      <div>
-        <h3>별점</h3>
+      <S.RatingBox>
+        <h3>{averageRating}</h3>
         <StarRating rating={rating} onStarClick={handleStarClick} />
-        <p>평균 별점: {averageRating}</p>
-      </div>
+      </S.RatingBox>
 
       <h3>댓글</h3>
-      <ul>
+      <S.Comments>
         {comments.map((comment, index) => (
-          <li key={index}>
-            <div>{comment.author}</div>
-            {comment.content}
-          </li>
+          <S.Comment key={index}>
+            <S.CommentAuthor>{comment.author}</S.CommentAuthor>
+            <S.CommentContent>{comment.content}</S.CommentContent>
+          </S.Comment>
         ))}
-      </ul>
+      </S.Comments>
 
       <form onSubmit={handleCommentSubmit}>
         <textarea
@@ -142,7 +142,7 @@ const PostDetail = () => {
         ></textarea>
         <button type="submit">댓글 등록</button>
       </form>
-    </div>
+    </S.Container>
   );
 };
 
