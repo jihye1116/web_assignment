@@ -114,15 +114,29 @@ const PostDetail = () => {
 
   return (
     <S.Container>
-      <S.Title>{post.title}</S.Title>
+      <S.TopBox>
+        <span>{averageRating}</span>
+        <S.Title>{post.title}</S.Title>
+      </S.TopBox>
       <S.Author>{post.author}</S.Author>
 
       <S.Content dangerouslySetInnerHTML={{ __html: post.content }}></S.Content>
 
       <S.RatingBox>
-        <h3>{averageRating}</h3>
         <StarRating rating={rating} onStarClick={handleStarClick} />
       </S.RatingBox>
+
+      <S.CommentBox onSubmit={handleCommentSubmit}>
+        <S.CommentArea
+          placeholder="댓글을 작성하세요"
+          value={commentText}
+          onChange={(e) => setCommentText(e.target.value)}
+        ></S.CommentArea>
+
+        <S.CommentBottom>
+          <S.CommentButton type="submit">댓글 등록</S.CommentButton>
+        </S.CommentBottom>
+      </S.CommentBox>
 
       <h3>댓글</h3>
       <S.Comments>
@@ -133,15 +147,6 @@ const PostDetail = () => {
           </S.Comment>
         ))}
       </S.Comments>
-
-      <form onSubmit={handleCommentSubmit}>
-        <textarea
-          placeholder="댓글을 작성하세요"
-          value={commentText}
-          onChange={(e) => setCommentText(e.target.value)}
-        ></textarea>
-        <button type="submit">댓글 등록</button>
-      </form>
     </S.Container>
   );
 };

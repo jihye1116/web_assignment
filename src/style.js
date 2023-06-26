@@ -52,7 +52,6 @@ export const headerItem = styled.div`
   padding: 15px 25px;
   font-weight: 600;
   font-size: 15px;
-
   border-bottom: ${(props) => (props.isActive ? "2px solid #0b53e4" : "none")};
 `;
 
