@@ -31,18 +31,13 @@ const Main = () => {
     <div style={{ margin: "auto 20%", fontFamily: "GmarketSansTTFMedium" }}>
       <div>
         <h1>글 목록</h1>
-        <S.PostBox
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(2, 1fr)",
-            gap: "10px",
-          }}
-        >
+        <S.PostBox>
           {posts.map((post) => (
             <Link to={`/post/${post.id}`}>
               <S.PostContainer>
                 <S.PostContents>
-                  <p style={{ fontSize: "20px" }}>{post.title}</p>
+                  <S.Title>{post.title}</S.Title>
+                  <S.Content>{post.content}</S.Content>
                 </S.PostContents>
                 <S.PostBottom>{post.author}</S.PostBottom>
               </S.PostContainer>

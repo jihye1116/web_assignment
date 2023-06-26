@@ -39,7 +39,10 @@ export const User = styled.div`
 
 const GlobalStyle = createGlobalStyle`
   *, *::before, *::after {
-   background-color: red;
+   text-decoration: none;
+   color: black;
+   box-sizing: border-box;
+
   }
 
   body {
