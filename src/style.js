@@ -17,9 +17,13 @@ const GlobalStyle = createGlobalStyle`
 
 export default GlobalStyle;
 
-export const HeaderTop = styled.header`
+export const Header = styled.header`
   position: sticky;
   top: 0;
+  background-color: white;
+`;
+
+export const HeaderTop = styled.div`
   height: 100px;
 
   color: white;
@@ -49,7 +53,7 @@ export const headerItem = styled.div`
   font-weight: 600;
   font-size: 15px;
 
-  border-bottom: ${(props) => (props.isActive ? "2px solid blue" : "none")};
+  border-bottom: ${(props) => (props.isActive ? "2px solid #0b53e4" : "none")};
 `;
 
 export const LogoText = styled.div`

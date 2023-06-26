@@ -49,45 +49,48 @@ function App() {
   return (
     <BrowserRouter>
       <GlobalStyle />
-      <S.HeaderTop>
-        <div>
-          {/* <img src="" alt="로고" /> */}
-          <S.LogoText>로고</S.LogoText>
-        </div>
 
-        {user ? (
-          <>
-            <S.User>
-              {/* <span>{user.displayName}</span> */}
-              <S.LoginButton onClick={handleLogout}>로그아웃</S.LoginButton>
-            </S.User>
-          </>
-        ) : (
-          <S.LoginButton onClick={handleGoogleLogin}>로그인</S.LoginButton>
-        )}
-      </S.HeaderTop>
-      <S.HeaderBottom>
-        <S.headerItem isActive={activePage === "recent"}>
-          <Link
-            to={`/`}
-            onClick={() => {
-              setActivePage("recent");
-            }}
-          >
-            최근
-          </Link>
-        </S.headerItem>
-        <S.headerItem isActive={activePage === "popular"}>
-          <Link
-            to={`/write`}
-            onClick={() => {
-              setActivePage("popular");
-            }}
-          >
-            주간 인기
-          </Link>
-        </S.headerItem>
-      </S.HeaderBottom>
+      <S.Header>
+        <S.HeaderTop>
+          <div>
+            {/* <img src="" alt="로고" /> */}
+            <S.LogoText>로고</S.LogoText>
+          </div>
+
+          {user ? (
+            <>
+              <S.User>
+                {/* <span>{user.displayName}</span> */}
+                <S.LoginButton onClick={handleLogout}>로그아웃</S.LoginButton>
+              </S.User>
+            </>
+          ) : (
+            <S.LoginButton onClick={handleGoogleLogin}>로그인</S.LoginButton>
+          )}
+        </S.HeaderTop>
+        <S.HeaderBottom>
+          <S.headerItem isActive={activePage === "recent"}>
+            <Link
+              to={`/`}
+              onClick={() => {
+                setActivePage("recent");
+              }}
+            >
+              최근
+            </Link>
+          </S.headerItem>
+          <S.headerItem isActive={activePage === "popular"}>
+            <Link
+              to={`/write`}
+              onClick={() => {
+                setActivePage("popular");
+              }}
+            >
+              주간 인기
+            </Link>
+          </S.headerItem>
+        </S.HeaderBottom>
+      </S.Header>
 
       <Routes>
         <Route path="/" element={<Main />}></Route>

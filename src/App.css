@@ -10,3 +10,9 @@
   font-family: 'GmarketSansTTFMedium';
   src: url("./styles/fonts/GmarketSansTTFMedium.ttf") format('truetype');
 }
+
+
+*{
+
+    /* color: #0b53e4; */
+}
