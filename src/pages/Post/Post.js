@@ -59,10 +59,6 @@ const PostDetail = () => {
     }
   }, [post]);
 
-  useEffect(() => {
-    console.log(rating);
-  }, [rating]);
-
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
 
@@ -149,8 +145,6 @@ const PostDetail = () => {
   );
 };
 
-//
-
 const StarContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -183,20 +177,11 @@ const Right = styled.div`
   height: 100%;
   z-index: 2;
 `;
-function StarRating({ rating, onStarClick, onSubmitRating }) {
+
+function StarRating({ rating, onStarClick }) {
   const [hoveredRating, setHoveredRating] = useState(null);
-
   const handleLeftHalfEnter = (idx) => setHoveredRating(idx + 0.5);
-
   const handleRightHalfEnter = (idx) => setHoveredRating(idx + 1);
-
-  const handleRatingSubmit = () => {
-    onSubmitRating(hoveredRating);
-  };
-
-  const handleReset = () => {
-    setHoveredRating(null);
-  };
 
   return (
     <StarContainer>
@@ -239,14 +224,8 @@ function StarRating({ rating, onStarClick, onSubmitRating }) {
             </StarDiv>
           ))}
       </StarRow>
-      <StarRow>
-        <button onClick={handleRatingSubmit}>Submit Rating</button>
-        <button onClick={handleReset}>Reset</button>
-      </StarRow>
     </StarContainer>
   );
 }
-
-//
 
 export default PostDetail;
