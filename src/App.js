@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { fireStore, app, authService } from "./firebase";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
 import "./App.css";
 import * as S from "./style";
@@ -37,17 +37,24 @@ function App() {
   };
 
   useEffect(() => {
-    console.log(fireStore);
+    // console.log(fireStore);
   });
+
+  const [activePage, setActivePage] = useState("recent");
+
+  useEffect(() => {
+    console.log(activePage, "???");
+  }, [activePage]);
 
   return (
     <BrowserRouter>
       <GlobalStyle />
-      <S.Header>
+      <S.HeaderTop>
         <div>
           {/* <img src="" alt="로고" /> */}
           <S.LogoText>로고</S.LogoText>
         </div>
+
         {user ? (
           <>
             <S.User>
@@ -56,11 +63,31 @@ function App() {
             </S.User>
           </>
         ) : (
-          <S.LoginButton onClick={handleGoogleLogin}>
-            Google 로그인
-          </S.LoginButton>
+          <S.LoginButton onClick={handleGoogleLogin}>로그인</S.LoginButton>
         )}
-      </S.Header>
+      </S.HeaderTop>
+      <S.HeaderBottom>
+        <S.headerItem isActive={activePage === "recent"}>
+          <Link
+            to={`/`}
+            onClick={() => {
+              setActivePage("recent");
+            }}
+          >
+            최근
+          </Link>
+        </S.headerItem>
+        <S.headerItem isActive={activePage === "popular"}>
+          <Link
+            to={`/write`}
+            onClick={() => {
+              setActivePage("popular");
+            }}
+          >
+            주간 인기
+          </Link>
+        </S.headerItem>
+      </S.HeaderBottom>
 
       <Routes>
         <Route path="/" element={<Main />}></Route>
