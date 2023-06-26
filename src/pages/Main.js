@@ -26,6 +26,12 @@ const Main = () => {
     fetchPosts();
   }, []);
 
+  const stripHtmlTags = (html) => {
+    const div = document.createElement("div");
+    div.innerHTML = html;
+    return div.textContent || div.innerText || "";
+  };
+
   return (
     <div style={{ margin: "auto 20%", fontFamily: "GmarketSansTTFMedium" }}>
       <div>
@@ -36,7 +42,7 @@ const Main = () => {
               <S.PostContainer>
                 <S.PostContents>
                   <S.Title>{post.title}</S.Title>
-                  <S.Content>{post.content}</S.Content>
+                  <S.Content>{stripHtmlTags(post.content)}</S.Content>
                 </S.PostContents>
                 <S.PostBottom>{post.author}</S.PostBottom>
               </S.PostContainer>
