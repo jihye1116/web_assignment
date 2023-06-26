@@ -7,7 +7,7 @@ import * as S from "./style";
 import GlobalStyle from "./style";
 
 import Main from "./pages/Main/Main";
-import Post from "./pages/Post";
+import Post from "./pages/Post/Post";
 import Write from "./pages/Write";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
@@ -37,7 +37,7 @@ function App() {
   };
 
   useEffect(() => {
-    // console.log(fireStore);
+    console.log(fireStore);
   });
 
   const [activePage, setActivePage] = useState("recent");
