@@ -115,8 +115,9 @@ const PostDetail = () => {
       <h2>{post.title}</h2>
       <p>작성자: {post.author}</p>
 
-      <p>{post.content}</p>
+      <div dangerouslySetInnerHTML={{ __html: post.content }}></div>
 
+      {/*  내용 */}
       <div>
         <h3>별점</h3>
         <StarRating rating={rating} onStarClick={handleStarClick} />
