@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { db } from "../firebase";
 import { getAuth } from "firebase/auth";
-import { collection, doc, setDoc } from "firebase/firestore";
+import { collection, doc, setDoc, serverTimestamp } from "firebase/firestore";
 
 function PostForm() {
   const [title, setTitle] = useState("");
@@ -23,6 +23,7 @@ function PostForm() {
         content,
         author: currentUser.displayName,
         rating,
+        timestamp: serverTimestamp(), // 현재 시간을 서버 시간으로 저장
       };
 
       await setDoc(postRef, postData);

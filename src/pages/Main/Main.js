@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { db } from "../../firebase";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, orderBy, query } from "firebase/firestore";
 import { Link } from "react-router-dom";
 
 import * as S from "./style";
@@ -11,7 +11,8 @@ const Main = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const querySnapshot = await getDocs(collection(db, "posts"));
+        const q = query(collection(db, "posts"), orderBy("timestamp", "desc"));
+        const querySnapshot = await getDocs(q);
         const postData = querySnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
@@ -23,8 +24,6 @@ const Main = () => {
     };
 
     fetchPosts();
-
-    console.log(posts);
   }, []);
 
   return (
@@ -33,7 +32,7 @@ const Main = () => {
         <h1>글 목록</h1>
         <S.PostBox>
           {posts.map((post) => (
-            <Link to={`/post/${post.id}`}>
+            <Link to={`/post/${post.id}`} key={post.id}>
               <S.PostContainer>
                 <S.PostContents>
                   <S.Title>{post.title}</S.Title>
