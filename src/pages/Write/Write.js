@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import { db } from "../firebase";
+import { db } from "../../firebase";
 import { getAuth } from "firebase/auth";
 import { collection, doc, setDoc, serverTimestamp } from "firebase/firestore";
 
-function PostForm() {
+import * as S from "./style";
+
+function Write() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [rating, setRating] = useState(0);
@@ -23,7 +25,7 @@ function PostForm() {
         content,
         author: currentUser.displayName,
         rating,
-        timestamp: serverTimestamp(), // 현재 시간을 서버 시간으로 저장
+        timestamp: serverTimestamp(),
       };
 
       await setDoc(postRef, postData);
@@ -37,21 +39,25 @@ function PostForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
+    <S.Container>
+      <S.Input
         type="text"
         placeholder="제목"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
-      <textarea
+
+      <S.TextArea
         placeholder="내용"
         value={content}
         onChange={(e) => setContent(e.target.value)}
-      ></textarea>
-      <button type="submit">글 등록</button>
-    </form>
+      ></S.TextArea>
+
+      <S.Button type="submit" onClick={handleSubmit}>
+        글 등록
+      </S.Button>
+    </S.Container>
   );
 }
 
-export default PostForm;
+export default Write;
