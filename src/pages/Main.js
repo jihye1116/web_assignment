@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { db } from "../../firebase";
+import { db } from "../firebase";
 import { collection, getDocs, orderBy, query } from "firebase/firestore";
 import { Link } from "react-router-dom";
 
-import * as S from "./style";
+import * as S from "../styles/Main.style.js";
 
 const Main = () => {
   const [posts, setPosts] = useState([]);

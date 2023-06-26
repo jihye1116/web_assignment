@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { db } from "../../firebase";
+import { db } from "../firebase";
 import { getAuth } from "firebase/auth";
 import { collection, doc, setDoc, serverTimestamp } from "firebase/firestore";
 
-import * as S from "./style";
+import * as S from "../styles/Write.style.js";
 
 function Write() {
   const [title, setTitle] = useState("");

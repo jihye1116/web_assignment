@@ -6,9 +6,9 @@ import "./App.css";
 import * as S from "./style";
 import GlobalStyle from "./style";
 
-import Main from "./pages/Main/Main";
-import Post from "./pages/Post/Post";
-import Write from "./pages/Write/Write";
+import Main from "./pages/Main";
+import Post from "./pages/Post";
+import Write from "./pages/Write";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 function App() {
