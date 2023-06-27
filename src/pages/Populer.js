@@ -5,19 +5,19 @@ import { Link } from "react-router-dom";
 
 import * as S from "../styles/Main.style.js";
 
-const Main = () => {
+const RatingSortedPosts = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const q = query(collection(db, "posts"), orderBy("timestamp", "desc"));
+        const q = query(collection(db, "posts"), orderBy("ratings", "desc"));
         const querySnapshot = await getDocs(q);
         const postData = querySnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
         }));
-        setPosts(postData);
+        setPosts(postData.slice(0, 8));
       } catch (error) {
         console.log(error);
       }
@@ -35,7 +35,7 @@ const Main = () => {
   return (
     <div style={{ margin: "auto 20%", fontFamily: "GmarketSansTTFMedium" }}>
       <div>
-        <h1>오늘의 시</h1>
+        <h1>미슐랭</h1>
         <S.PostBox>
           {posts.map((post) => (
             <Link to={`/post/${post.id}`} key={post.id}>
@@ -54,4 +54,4 @@ const Main = () => {
   );
 };
 
-export default Main;
+export default RatingSortedPosts;

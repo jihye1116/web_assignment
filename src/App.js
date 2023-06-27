@@ -8,6 +8,7 @@ import Main from "./pages/Main";
 import Post from "./pages/Post";
 import Write from "./pages/Write";
 import Header from "./components/Header";
+import Popular from "./pages/Populer";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Main />}></Route>
         <Route path="/write" element={<Write />}></Route>
+        <Route path="/popular" element={<Popular />}></Route>
         <Route path="/post/:id" element={<Post />}></Route>
       </Routes>
     </BrowserRouter>

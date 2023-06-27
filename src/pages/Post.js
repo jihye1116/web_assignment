@@ -13,9 +13,8 @@ import {
 } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 
-import styled from "styled-components";
 import * as S from "../styles/Post.style";
-import { FaStar, FaStarHalfAlt } from "react-icons/fa";
+import { FaStar } from "react-icons/fa";
 import StarRating from "../components/Post/StarRating";
 
 const PostDetail = () => {
