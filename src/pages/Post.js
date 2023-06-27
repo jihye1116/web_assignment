@@ -16,6 +16,7 @@ import { getAuth } from "firebase/auth";
 import styled from "styled-components";
 import * as S from "../styles/Post.style";
 import { FaStar, FaStarHalfAlt } from "react-icons/fa";
+import StarRating from "../components/Post/StarRating";
 
 const PostDetail = () => {
   const { id } = useParams();
@@ -137,7 +138,7 @@ const PostDetail = () => {
         <div
           style={{ fontSize: "20px", fontWeight: "600", marginRight: "5px" }}
         >
-          별점 등록
+          어떠셨나요?
         </div>
         <StarRating rating={rating} onStarClick={handleStarClick} />
       </S.StarRatingBox>
@@ -166,89 +167,5 @@ const PostDetail = () => {
     </S.Container>
   );
 };
-
-const StarContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const StarRow = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const StarDiv = styled.div`
-  position: relative;
-  cursor: pointer;
-`;
-
-const Left = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 50%;
-  height: 100%;
-  z-index: 2;
-`;
-
-const Right = styled.div`
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 50%;
-  height: 100%;
-  z-index: 2;
-`;
-
-function StarRating({ rating, onStarClick }) {
-  const [hoveredRating, setHoveredRating] = useState(null);
-  const handleLeftHalfEnter = (idx) => setHoveredRating(idx + 0.5);
-  const handleRightHalfEnter = (idx) => setHoveredRating(idx + 1);
-  const handleStarClick = (idx) => {
-    if (hoveredRating !== null) {
-      onStarClick(hoveredRating);
-    } else {
-      onStarClick(idx + 1);
-    }
-  };
-
-  return (
-    <StarContainer>
-      <StarRow>
-        {Array(5)
-          .fill(0)
-          .map((_, idx) => {
-            const starIndex = idx + 1;
-            const isFilled =
-              starIndex <= (hoveredRating !== null ? hoveredRating : rating);
-            const isHalfFilled =
-              hoveredRating === null &&
-              starIndex === Math.ceil(rating) &&
-              rating % 1 !== 0;
-
-            return (
-              <StarDiv key={idx} onClick={() => handleStarClick(idx)}>
-                {isHalfFilled ? (
-                  <FaStarHalfAlt size={16} />
-                ) : isFilled ? (
-                  <FaStar size={16} />
-                ) : (
-                  <FaStar size={16} />
-                )}
-                <Left
-                  key={idx + "left"}
-                  onClick={() => handleLeftHalfEnter(idx)}
-                />
-                <Right
-                  key={idx + "right"}
-                  onClick={() => handleRightHalfEnter(idx)}
-                />
-              </StarDiv>
-            );
-          })}
-      </StarRow>
-    </StarContainer>
-  );
-}
 
 export default PostDetail;

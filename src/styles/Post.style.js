@@ -53,6 +53,7 @@ export const StarRatingBox = styled.div`
   justify-content: center;
   display: flex;
   align-items: center;
+  flex-direction: column;
 `;
 
 export const CommentBox = styled.form`
