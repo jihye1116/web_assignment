@@ -116,8 +116,6 @@ const PostDetail = () => {
     return <div>글을 불러오는 중입니다...</div>;
   }
 
-  const roundedRatings = Array(Math.round(averageRating)).fill();
-
   return (
     <S.Container>
       <S.TopBox>
@@ -140,7 +138,7 @@ const PostDetail = () => {
         <div
           style={{ fontSize: "20px", fontWeight: "600", marginRight: "5px" }}
         >
-          어떠셨나요?
+          별점 등록
         </div>
         <StarRating rating={rating} onStarClick={handleStarClick} />
       </S.StarRatingBox>
