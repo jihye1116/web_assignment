@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 import * as S from "../styles/Main.style.js";
 
-const RatingSortedPosts = () => {
+const Popular = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
@@ -32,6 +32,13 @@ const RatingSortedPosts = () => {
     return div.textContent || div.innerText || "";
   };
 
+  const getAverageRating = (post) => {
+    const ratings = Object.values(post.ratings);
+    const sum = ratings.reduce((total, rating) => total + rating, 0);
+    const average = sum / ratings.length;
+    return average;
+  };
+
   return (
     <div style={{ margin: "auto 20%", fontFamily: "GmarketSansTTFMedium" }}>
       <div>
@@ -41,6 +48,9 @@ const RatingSortedPosts = () => {
             <Link to={`/post/${post.id}`} key={post.id}>
               <S.PostContainer>
                 <S.PostContents>
+                  <div style={{ fontSize: "20px", fontWeight: "600" }}>
+                    {getAverageRating(post)}
+                  </div>
                   <S.Title>{post.title}</S.Title>
                   <S.Content>{stripHtmlTags(post.content)}</S.Content>
                 </S.PostContents>
@@ -54,4 +64,4 @@ const RatingSortedPosts = () => {
   );
 };
 
-export default RatingSortedPosts;
+export default Popular;
