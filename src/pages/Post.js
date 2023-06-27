@@ -70,7 +70,12 @@ const PostDetail = () => {
     try {
       const currentUser = getAuth().currentUser;
       if (!currentUser) {
+        alert("로그인되어 있지 않습니다.");
         throw new Error("로그인되어 있지 않습니다.");
+      }
+      if (commentText.length == 0) {
+        alert("작성 후 눌러주세요");
+        throw new Error("내용 좀 쓰시오.");
       }
 
       const commentData = {
@@ -91,10 +96,12 @@ const PostDetail = () => {
     try {
       const currentUser = getAuth().currentUser;
       if (!currentUser) {
+        alert("로그인되어 있지 않습니다.");
         throw new Error("로그인되어 있지 않습니다.");
       }
 
       if (post && post.ratings && post.ratings[currentUser.uid]) {
+        alert("이미 별점을 등록했습니다.");
         throw new Error("이미 별점을 등록했습니다.");
       }
 
