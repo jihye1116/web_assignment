@@ -2,6 +2,8 @@ import { styled } from "styled-components";
 
 export const Container = styled.div`
   margin: auto 20%;
+
+  font-family: "GmarketSansTTFMedium";
 `;
 
 export const TopBox = styled.div`
@@ -72,6 +74,8 @@ export const CommentArea = styled.textarea`
   font-size: 18px;
   border: none;
   outline: none;
+
+  font-family: "GmarketSansTTFLight";
 `;
 
 export const CommentBottom = styled.div`
@@ -91,6 +95,8 @@ export const CommentButton = styled.button`
   height: 40px;
   border: none;
   border-radius: 5px;
+
+  font-family: "GmarketSansTTFMedium";
 `;
 
 // 별점 표시 박스
