@@ -19,7 +19,7 @@ export const TopBox = styled.div`
 export const Title = styled.span``;
 
 export const Author = styled.p`
-  margin-left: 5px;
+  margin-left: 15px;
   font-size: 16px;
   font-weight: 600;
 `;
@@ -28,7 +28,7 @@ export const Content = styled.div`
   width: 100%;
   margin: 10px auto;
   padding: 16px;
-  border: 1px solid gray;
+  border: 1px solid rgba(0, 0, 0, 0.5);
   border-radius: 8px;
 `;
 
