@@ -95,6 +95,18 @@ export const CommentButton = styled.button`
 `;
 
 // 별점 표시 박스
+export const ScopeBox = styled.div`
+  justify-content: center;
+  display: flex;
+`;
+
 export const Scope = styled.div`
-  border: 1px solid black;
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  flex-direction: column;
+  width: 100px;
+  height: 80px;
 `;

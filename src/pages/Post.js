@@ -127,12 +127,14 @@ const PostDetail = () => {
 
       <S.Content dangerouslySetInnerHTML={{ __html: post.content }}></S.Content>
 
-      <S.Scope>
-        {/* 아.. 진짜 싫다 ㅎ */}
-        <FaStar size={32} />
-        <span>{averageRating}</span>
-        <span>({ratingCount})</span>
-      </S.Scope>
+      <S.ScopeBox>
+        <S.Scope>
+          <FaStar size={32} />
+          <div>
+            {averageRating}({ratingCount})
+          </div>
+        </S.Scope>
+      </S.ScopeBox>
 
       <S.StarRatingBox>
         <div
