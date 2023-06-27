@@ -82,9 +82,15 @@ function Header() {
           </HeaderItem>
         </div>
 
-        <Link to={`/write`}>
-          <WriteButton>시 쓰기</WriteButton>
-        </Link>
+        {user ? (
+          <>
+            <Link to={`/write`}>
+              <WriteButton>시 쓰기</WriteButton>
+            </Link>
+          </>
+        ) : (
+          <></>
+        )}
       </HeaderBottom>
     </HeaderBox>
   );
