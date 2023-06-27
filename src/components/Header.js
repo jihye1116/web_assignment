@@ -59,26 +59,28 @@ function Header() {
         )}
       </HeaderTop>
       <HeaderBottom>
-        <HeaderItem isActive={activePage === "recent"}>
-          <Link
-            to={`/`}
-            onClick={() => {
-              setActivePage("recent");
-            }}
-          >
-            최근
-          </Link>
-        </HeaderItem>
-        <HeaderItem isActive={activePage === "popular"}>
-          <Link
-            to={`/write`}
-            onClick={() => {
-              setActivePage("popular");
-            }}
-          >
-            주간 인기
-          </Link>
-        </HeaderItem>
+        <div style={{ display: "flex" }}>
+          <HeaderItem isActive={activePage === "recent"}>
+            <Link
+              to={`/`}
+              onClick={() => {
+                setActivePage("recent");
+              }}
+            >
+              최근
+            </Link>
+          </HeaderItem>
+          <HeaderItem isActive={activePage === "popular"}>주간 인기</HeaderItem>
+        </div>
+
+        <Link
+          to={`/write`}
+          onClick={() => {
+            setActivePage("popular");
+          }}
+        >
+          <WriteButton>시 쓰기</WriteButton>
+        </Link>
       </HeaderBottom>
     </HeaderBox>
   );
@@ -110,9 +112,9 @@ const HeaderTop = styled.div`
 const HeaderBottom = styled.div`
   margin: auto 20%;
   display: flex;
-  flex-direction: row;
-
   font-family: "GmarketSansTTFMedium";
+
+  justify-content: space-between;
 
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 `;
@@ -122,6 +124,27 @@ const HeaderItem = styled.div`
   font-weight: 600;
   font-size: 15px;
   border-bottom: ${(props) => (props.isActive ? "2px solid #0b53e4" : "none")};
+
+  cursor: pointer;
+`;
+
+const WriteButton = styled.button`
+  align-items: center;
+  margin-top: 7px;
+
+  font-family: "GmarketSansTTFMedium";
+  background-color: #0b53e4;
+  color: white;
+  padding: 5px 5px;
+  height: 40px;
+  width: 80px;
+  border: none;
+  border-radius: 5px;
+
+  font-weight: 600;
+  font-size: 15px;
+
+  cursor: pointer;
 `;
 
 const LogoText = styled.div`
