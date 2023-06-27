@@ -25,6 +25,8 @@ const PostDetail = () => {
   const [rating, setRating] = useState(null);
   const [averageRating, setAverageRating] = useState(0);
 
+  const [ratingCount, setRatingCount] = useState();
+
   useEffect(() => {
     const postId = id;
     const postRef = doc(db, "posts", postId);
@@ -58,6 +60,7 @@ const PostDetail = () => {
       const sum = ratings.reduce((acc, curr) => acc + curr, 0);
       const average = sum / ratings.length;
       setAverageRating(average);
+      setRatingCount(ratings.length);
     }
   }, [post]);
 
@@ -112,19 +115,32 @@ const PostDetail = () => {
     return <div>글을 불러오는 중입니다...</div>;
   }
 
+  const roundedRatings = Array(Math.round(averageRating)).fill();
+
   return (
     <S.Container>
       <S.TopBox>
-        <span>{averageRating}</span>
         <S.Title>{post.title}</S.Title>
+        <S.Author>{post.author}</S.Author>
       </S.TopBox>
-      <S.Author>{post.author}</S.Author>
 
       <S.Content dangerouslySetInnerHTML={{ __html: post.content }}></S.Content>
 
-      <S.RatingBox>
+      <S.Scope>
+        {/* 아.. 진짜 싫다 ㅎ */}
+        <FaStar size={32} />
+        <span>{averageRating}</span>
+        <span>({ratingCount})</span>
+      </S.Scope>
+
+      <S.StarRatingBox>
+        <div
+          style={{ fontSize: "20px", fontWeight: "600", marginRight: "5px" }}
+        >
+          별점 등록
+        </div>
         <StarRating rating={rating} onStarClick={handleStarClick} />
-      </S.RatingBox>
+      </S.StarRatingBox>
 
       <S.CommentBox onSubmit={handleCommentSubmit}>
         <S.CommentArea
@@ -188,47 +204,48 @@ function StarRating({ rating, onStarClick }) {
   const [hoveredRating, setHoveredRating] = useState(null);
   const handleLeftHalfEnter = (idx) => setHoveredRating(idx + 0.5);
   const handleRightHalfEnter = (idx) => setHoveredRating(idx + 1);
+  const handleStarClick = (idx) => {
+    if (hoveredRating !== null) {
+      onStarClick(hoveredRating);
+    } else {
+      onStarClick(idx + 1);
+    }
+  };
 
   return (
     <StarContainer>
       <StarRow>
         {Array(5)
           .fill(0)
-          .map((_, idx) => (
-            <StarDiv key={idx} onClick={() => onStarClick(idx + 1)}>
-              {hoveredRating !== null ? (
-                <>
-                  {hoveredRating - Math.floor(hoveredRating) === 0.5 &&
-                  Math.floor(hoveredRating) === idx ? (
-                    <FaStarHalfAlt key={idx} size={32} color="gold" />
-                  ) : idx + 1 > hoveredRating ? (
-                    <FaStar key={idx} size={32} color="lightGray" />
-                  ) : (
-                    <FaStar key={idx} size={32} color="gold" />
-                  )}
-                </>
-              ) : (
-                <>
-                  {rating - Math.floor(rating) === 0.5 &&
-                  Math.floor(rating) === idx ? (
-                    <FaStarHalfAlt key={idx} size={32} color="gold" />
-                  ) : idx + 1 > rating ? (
-                    <FaStar key={idx} size={32} color="lightGray" />
-                  ) : (
-                    <FaStar key={idx} size={32} color="gold" />
-                  )}
-                </>
-              )}
-              <Left
-                key={idx + "left"}
-                onMouseEnter={() => handleLeftHalfEnter(idx)}
-              />
-              <Right
-                key={idx + "right"}
-                onMouseEnter={() => handleRightHalfEnter(idx)}
-              />
-            </StarDiv>
-          ))}
+          .map((_, idx) => {
+            const starIndex = idx + 1;
+            const isFilled =
+              starIndex <= (hoveredRating !== null ? hoveredRating : rating);
+            const isHalfFilled =
+              hoveredRating === null &&
+              starIndex === Math.ceil(rating) &&
+              rating % 1 !== 0;
+
+            return (
+              <StarDiv key={idx} onClick={() => handleStarClick(idx)}>
+                {isHalfFilled ? (
+                  <FaStarHalfAlt size={16} />
+                ) : isFilled ? (
+                  <FaStar size={16} />
+                ) : (
+                  <FaStar size={16} />
+                )}
+                <Left
+                  key={idx + "left"}
+                  onClick={() => handleLeftHalfEnter(idx)}
+                />
+                <Right
+                  key={idx + "right"}
+                  onClick={() => handleRightHalfEnter(idx)}
+                />
+              </StarDiv>
+            );
+          })}
       </StarRow>
     </StarContainer>
   );

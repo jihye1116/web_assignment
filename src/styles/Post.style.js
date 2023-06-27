@@ -7,7 +7,9 @@ export const Container = styled.div`
 export const TopBox = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
 
+  margin-top: 10px;
   font-size: 24px;
   margin-bottom: 16px;
   font-weight: 600;
@@ -16,6 +18,7 @@ export const TopBox = styled.div`
 export const Title = styled.span``;
 
 export const Author = styled.p`
+  margin-left: 5px;
   font-size: 16px;
   font-weight: 600;
 `;
@@ -46,8 +49,10 @@ export const CommentContent = styled.div`
   font-size: 16px;
 `;
 
-export const RatingBox = styled.div`
-  background-color: aliceblue;
+export const StarRatingBox = styled.div`
+  justify-content: center;
+  display: flex;
+  align-items: center;
 `;
 
 export const CommentBox = styled.form`
@@ -86,4 +91,9 @@ export const CommentButton = styled.button`
   height: 40px;
   border: none;
   border-radius: 5px;
+`;
+
+// 별점 표시 박스
+export const Scope = styled.div`
+  border: 1px solid black;
 `;
