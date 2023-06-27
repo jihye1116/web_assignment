@@ -70,13 +70,15 @@ function Header() {
               최근
             </Link>
           </HeaderItem>
-          <HeaderItem
-            isActive={activePage === "popular"}
-            onClick={() => {
-              setActivePage("popular");
-            }}
-          >
-            주간 인기
+          <HeaderItem isActive={activePage === "popular"}>
+            <Link
+              to={`/popular`}
+              onClick={() => {
+                setActivePage("popular");
+              }}
+            >
+              인기
+            </Link>
           </HeaderItem>
         </div>
 
