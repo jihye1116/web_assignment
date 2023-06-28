@@ -18,7 +18,8 @@ const TitleInput = styled.input`
 
   font-size: 20px;
   font-weight: bold;
-  color: gray;
+
+  font-family: "GmarketSansTTFBold";
 `;
 
 const EditorContainer = styled.div`
@@ -56,6 +57,7 @@ const SubmitButton = styled.button`
   font-weight: bold;
 
   border-radius: 5px;
+  font-family: "GmarketSansTTFMedium";
 `;
 
 const CancelButton = styled.button`
@@ -67,6 +69,8 @@ const CancelButton = styled.button`
   font-weight: bold;
 
   border-radius: 5px;
+
+  font-family: "GmarketSansTTFMedium";
 `;
 
 const SaveButton = styled.button`
