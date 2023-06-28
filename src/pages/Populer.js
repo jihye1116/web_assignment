@@ -52,7 +52,9 @@ const Popular = () => {
                     {getAverageRating(post)}
                   </div>
                   <S.Title>{post.title}</S.Title>
-                  <S.Content>{stripHtmlTags(post.content)}</S.Content>
+                  <S.Content style={{ height: "70px" }}>
+                    {stripHtmlTags(post.content)}
+                  </S.Content>
                 </S.PostContents>
                 <S.PostBottom>{post.author}</S.PostBottom>
               </S.PostContainer>

@@ -5,6 +5,7 @@ import { collection, doc, setDoc, serverTimestamp } from "firebase/firestore";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import styled from "styled-components";
+import { useNavigate } from "react-router";
 
 const FormContainer = styled.form`
   margin: 0 20%;
@@ -88,6 +89,8 @@ function PostForm() {
   const [content, setContent] = useState("");
   const [rating, setRating] = useState(0);
 
+  const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -111,6 +114,7 @@ function PostForm() {
       setTitle("");
       setContent("");
       setRating(0);
+      navigate("/");
     } catch (error) {
       console.error("글 등록 중 오류가 발생했습니다.", error);
     }
